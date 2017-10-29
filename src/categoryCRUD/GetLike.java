@@ -11,19 +11,21 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import pojo.Category;
 
-public class GetCategory {
+public class GetLike {
+
     public static void main(String[] args) throws IOException {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession session = sqlSessionFactory.openSession();
 
-        Category c = session.selectOne("getCategory", 1);
-
-        System.out.println("\"session.selectOne()\" result: " + c.getName());
-
+        List<Category> cs = session.selectList("listCategoryByName","cat");
+        for (Category c : cs) {
+            System.out.println(c.getName());
+        }
 
         session.commit();
         session.close();
+
     }
 }

@@ -11,17 +11,13 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import pojo.Category;
 
-public class DeleteCategory {
+public class GetAll {
 
     public static void main(String[] args) throws IOException {
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession session = sqlSessionFactory.openSession();
-
-        Category c = new Category();
-        c.setId(3);
-        session.delete("deleteCategory",c);
 
         listAll(session);
 
