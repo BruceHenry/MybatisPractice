@@ -1,5 +1,5 @@
 # MybatisPractice
-This project is a practice of Mybatis. Most common usages of Mybatis are implemented. 
+This project is a practice of Mybatis. Examples cover common usage of Mybatis framework. 
 <hr/>
 
 #### Preparation
@@ -70,6 +70,8 @@ __Methods:__
 ```
 
 ### 03. One To Many
+__One__ Category object has __many__ Product objects.
+
 [Package Directory](./src/one_to_many)
 - [SQL](./src/one_to_many/.sql)
 - POJO Java Class:
@@ -77,7 +79,7 @@ __Methods:__
     2. [Product](./src/one_to_many/Product.java)
 - [Category XML](./src/one_to_many/Category.xml)
 - [Configuration XML](./src/one_to_many/oneToMany-config.xml)
-- [main method](./src/one_to_many/Main.java)
+- [main method](./src/one_to_many/Main.java) Print all Category objects with related Product.
 
 __Result:__ 
 ```
@@ -92,16 +94,18 @@ Category [id=2, name=category2]
 ```
 
 ### 04. Many To One
+__Many__  Product objects belongs to __one__ Category.
+
 [Package Directory](./src/many_to_one)
 - [SQL](./src/many_to_one/.sql)
 - POJO Java Class:
     1. [Category](./src/many_to_one/Category.java)
     2. [Product](./src/many_to_one/Product.java)
-- Category XML
+- POJO XML
     1. [Category](./src/many_to_one/Category.xml)
     2. [Product](./src/many_to_one/Product.xml)
 - [Configuration XML](./src/many_to_one/manyToOne-config.xml)
-- [main method](./src/many_to_one/Main.java)
+- [main method](./src/many_to_one/Main.java) Print all Product objects with related Category.
 
 __Result:__ 
 ```
@@ -111,4 +115,54 @@ Product [id=3, name=product c, price=88.88]	==>	Category [id=1, name=UpdatedName
 Product [id=4, name=product x, price=88.88]	==>	Category [id=2, name=category2]
 Product [id=5, name=product y, price=88.88]	==>	Category [id=2, name=category2]
 Product [id=6, name=product z, price=88.88]	==>	Category [id=2, name=category2]
+```
+
+### 05. Many To Many
+__One__ Order has __many__ Product objects.<br/>
+__One__ Product is in __many__ Order objects.
+
+[Package Directory](./src/many_to_many)
+- [SQL](./src/many_to_many/.sql)
+- POJO Java Class:
+    1. [Category](./src/many_to_many/Category.java)
+    2. [Product](./src/many_to_many/Product.java)
+    3. [OrderItem](./src/many_to_many/OrderItem.java)
+- POJO XML
+    1. [Category](./src/many_to_many/Category.xml)
+    2. [Product](./src/many_to_many/Product.xml)
+    3. [OrderItem](./src/many_to_many/OrderItem.xml)
+- [Configuration XML](./src/many_to_many/manyToMany-config.xml)
+- [main method](./src/many_to_many/Main.java) First add a relation between Order and Product, then delete it.
+
+__Result:__ 
+```
+Order001
+	product a	88.879997	100
+	product b	88.879997	100
+	product c	88.879997	100
+Order002
+	product b	88.879997	100
+	product c	88.879997	100
+	product x	88.879997	100
+
+*******Add Order 'Order001' <=> Product 'z'********
+Order001
+	product a	88.879997	100
+	product b	88.879997	100
+	product c	88.879997	100
+	product z	88.879997	200
+Order002
+	product b	88.879997	100
+	product c	88.879997	100
+	product x	88.879997	100
+
+*******Delete Order 'Order001' <=> Product 'z'********
+Order001
+	product a	88.879997	100
+	product b	88.879997	100
+	product c	88.879997	100
+Order002
+	product b	88.879997	100
+	product c	88.879997	100
+	product x	88.879997	100
 ```
