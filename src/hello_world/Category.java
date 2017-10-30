@@ -1,4 +1,5 @@
-package pojo;
+package hello_world;
+
 
 public class Category {
     private int id;

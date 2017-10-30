@@ -1,5 +1,4 @@
-create database mybatis;
-
+CREATE database mybatis;
 USE mybatis;
 
 CREATE TABLE category_ (
