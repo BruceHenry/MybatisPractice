@@ -2,8 +2,7 @@
 This project is a practice of Mybatis
 
 ### 01. Hello World
-[Package](./src/hello_world)
-
+[Package Directory](./src/hello_world)
 - [SQL](./src/hello_world/.sql)
 - [POJO Java Class](./src/hello_world/Category.java)
 - [POJO XML](./src/hello_world/Category.xml)
@@ -13,8 +12,7 @@ This project is a practice of Mybatis
 __Result:__ Print all the names of Category.
 
 ### 02. Basic CRUD
-[Package](./src/basic_CRUD)
-
+[Package Directory](./src/basic_CRUD)
 - [POJO Java Class](./src/basic_CRUD/Category.java)
 - [POJO XML](./src/basic_CRUD/Category.xml)
 - [Configuration XML](./src/basic_CRUD/basicCRUD-config.xml)
@@ -64,7 +62,7 @@ __Methods:__
 ```
 
 ### 03. One To Many
-
+[Package Directory](./src/one_to_many)
 - [SQL](./src/one_to_many/.sql)
 - POJO Java Class:
     1. [Category](./src/one_to_many/Category.java)
