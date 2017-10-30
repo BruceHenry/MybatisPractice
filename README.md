@@ -1,5 +1,13 @@
 # MybatisPractice
-This project is a practice of Mybatis
+This project is a practice of Mybatis. Most common usages of Mybatis are implemented. 
+<hr/>
+
+#### Preparation
+Install MySQL, and set username=root and password=admin. 
+
+*You can install whatever database you want and set any username, do not forget to change the code in the Configuration XML files.*
+
+__Required jar:__[Mybatis](./lib/mybatis-3.4.5.jar) and [JDBC (MySQL)](./lib/mysql-connector-java-5.1.42-bin.jar)
 
 ### 01. Hello World
 [Package Directory](./src/hello_world)
@@ -81,4 +89,26 @@ Category [id=2, name=category2]
 	Product [id=4, name=product x, price=88.88]
 	Product [id=5, name=product y, price=88.88]
 	Product [id=6, name=product z, price=88.88]
+```
+
+### 04. Many To One
+[Package Directory](./src/many_to_one)
+- [SQL](./src/many_to_one/.sql)
+- POJO Java Class:
+    1. [Category](./src/many_to_one/Category.java)
+    2. [Product](./src/many_to_one/Product.java)
+- Category XML
+    1. [Category](./src/many_to_one/Category.xml)
+    2. [Product](./src/many_to_one/Product.xml)
+- [Configuration XML](./src/many_to_one/manyToOne-config.xml)
+- [main method](./src/many_to_one/Main.java)
+
+__Result:__ 
+```
+Product [id=1, name=product a, price=88.88]	==>	Category [id=1, name=UpdatedName]
+Product [id=2, name=product b, price=88.88]	==>	Category [id=1, name=UpdatedName]
+Product [id=3, name=product c, price=88.88]	==>	Category [id=1, name=UpdatedName]
+Product [id=4, name=product x, price=88.88]	==>	Category [id=2, name=category2]
+Product [id=5, name=product y, price=88.88]	==>	Category [id=2, name=category2]
+Product [id=6, name=product z, price=88.88]	==>	Category [id=2, name=category2]
 ```
