@@ -311,7 +311,7 @@ Customize AND/OR for WHERE and UPDATE
 - [Configuration XML](./src/dynamic_SQL/choose_tag/choose-config.xml)
 - [main method](./src/dynamic_SQL/choose_tag/Main.java)
 
-##### (5) foreach
+##### (6) foreach
 `foreach` is for `in` in SQL like `select * from product_ where id in(1,3,5)`
 ```
 <select id="listProduct" resultType="Product">
@@ -344,7 +344,7 @@ Product [id=3, name=product c, price=88.88]
 Product [id=5, name=product y, price=88.88]
 ```
 
-##### (6) bind <a name='bind'></a>
+##### (7) bind <a name='bind'></a>
 An easy way to concat.
 ```
 <!--Old concat way-->
