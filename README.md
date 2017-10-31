@@ -16,7 +16,7 @@ This project is a practice of Mybatis. Examples cover common usage of Mybatis fr
 11. [Page Split](#page-split)
 12. [Cache](#cache)
 13. [c3p0](#c3p0)
-14. [Mybatis Generator](mybatis-generator)
+14. [Mybatis Generator](#mybatis-generator)
 ***
 
 #### Preparation
@@ -32,7 +32,9 @@ __Required jar:__
 - [mchange-commons-java-0.2.11.jar](./lib/mchange-commons-java-0.2.11.jar)
 - [mybatis-generator-core-1.3.5.jar](./lib/mybatis-generator-core-1.3.5.jar)
 
-### 01. Hello World <a name="hello-world"/>
+<a name="hello-world"/>
+
+### 01. Hello World 
 [Example Package Directory](./src/hello_world)
 - [SQL](./src/hello_world/.sql)
 - [POJO Java Class](./src/hello_world/Category.java)
@@ -42,7 +44,9 @@ __Required jar:__
 
 __Result:__ Print all the names of Category.
 
-### 02. Basic CRUD  <a name="basic-CRUD"/>
+<a name="basic-CRUD"/>
+
+### 02. Basic CRUD  
 [Example Package Directory](./src/basic_CRUD) [(Annotation Way Here)](./src/annotation/CRUD)
 - [POJO Java Class](./src/basic_CRUD/Category.java)
 - [POJO XML](./src/basic_CRUD/Category.xml)
@@ -94,7 +98,9 @@ There is a better way using [`<bind>`](#bind).
 </select>
 ```
 
-### 03. One To Many <a name="one_to_many"/>
+<a name="one_to_many"/>
+
+### 03. One To Many 
 __One__ Category object has __many__ Product objects.
 
 [Example Package Directory](./src/one_to_many) [(Annotation Way Here)](./src/annotation/one_to_many)
@@ -118,7 +124,9 @@ Category [id=2, name=category2]
 	Product [id=6, name=product z, price=88.88]
 ```
 
-### 04. Many To One <a name="many_to_one"/>
+<a name="many_to_one"/>
+
+### 04. Many To One 
 __Many__  Product objects belongs to __one__ Category.
 
 [Example Package Directory](./src/many_to_one) [(Annotation Way Here)](./src/annotation/many_to_one)
@@ -142,7 +150,9 @@ Product [id=5, name=product y, price=88.88]	==>	Category [id=2, name=category2]
 Product [id=6, name=product z, price=88.88]	==>	Category [id=2, name=category2]
 ```
 
-### 05. Many To Many <a name="many_to_many"/>
+<a name="many_to_many"/>
+
+### 05. Many To Many 
 __One__ Order has __many__ Product objects.<br/>
 __One__ Product is in __many__ Order objects.
 
@@ -191,7 +201,10 @@ Order002
 	product c	88.879997	100
 	product x	88.879997	100
 ```
-### 06. Dynamic SQL <a name="dynamic-SQL"/>
+
+<a name="dynamic-SQL"/>
+
+### 06. Dynamic SQL 
 [(Annotation Way Here)](./src/annotation/dynamic_SQL)
 ##### (1) if
 Use one SQL for statements with a optional parameter.
@@ -368,7 +381,9 @@ Product [id=3, name=product c, price=88.88]
 Product [id=5, name=product y, price=88.88]
 ```
 
-##### (7) bind <a name='bind'></a>
+<a name='bind'/>
+
+##### (7) bind 
 An easy way to concat.
 ```
 <!--Old concat way-->
@@ -420,7 +435,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 ```
 
-### 11. Page Split <a name="page-split"/>
+<a name="page-split"/>
+
+### 11. Page Split 
 ##### Way 1: PageHelper
 
 __Mybatis-config.xml__
@@ -459,7 +476,9 @@ __POJO XML File__
         </select>   
 ```
 
-### 12. Cache <a name="cache"/>
+<a name="cache"/>
+
+### 12. Cache 
 ##### Step 1: Add `<setting name="cacheEnabled" value="true"/>` in mybatis-config.xml
 ##### Step 2: Add `<cache/>` in POJO XML File
 ```
@@ -474,12 +493,16 @@ __POJO XML File__
 ```
 ##### Step 3: POJO Class `implements Serializable`
 
-### 13. c3p0 <a name="c3p0"/>
+<a name="c3p0"/>
+
+### 13. c3p0 
 ##### Step 1: Add [c3p0-0.9.5.2.jar](./lib/c3p0-0.9.5.2.jar) and [mchange-commons-java-0.2.11.jar](./lib/mchange-commons-java-0.2.11.jar)
 ##### Step 2: Create [C3P0DataSourceFactory Class](./src/c3p0/C3P0DataSourceFactory.java)
 ##### Step 3: Edit [mybatis-config.xml](./src/c3p0/mybatis-config.xml)
 
-### 14. Mybatis Generator <a name="mybatis-generator"/>
+<a name="mybatis-generator"/>
+
+### 14. Mybatis Generator 
 Generate POJO and XML from tables in the database.
 ##### Step 1: Add [mybatis-generator-core-1.3.5.jar](./lib/mybatis-generator-core-1.3.5.jar)
 ##### Step 2: Create [generator-config.xml](./src/mybatis_generator/generator-config.xml)
