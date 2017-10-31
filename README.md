@@ -31,7 +31,7 @@ __Required jar:__
 - [c3p0-0.9.5.2.jar](./lib/c3p0-0.9.5.2.jar) 
 - [mchange-commons-java-0.2.11.jar](./lib/mchange-commons-java-0.2.11.jar)
 - [mybatis-generator-core-1.3.5.jar](./lib/mybatis-generator-core-1.3.5.jar)
-
+***
 <a name="hello-world"/>
 
 ### 01. Hello World 
@@ -43,7 +43,7 @@ __Required jar:__
 - [main method](./src/hello_world/Main.java)
 
 __Result:__ Print all the names of Category.
-
+***
 <a name="basic-CRUD"/>
 
 ### 02. Basic CRUD  
@@ -97,7 +97,7 @@ There is a better way using [`<bind>`](#bind).
     select * from   category_  where id> #{id}  and name like concat('%',#{name},'%')
 </select>
 ```
-
+***
 <a name="one_to_many"/>
 
 ### 03. One To Many 
@@ -123,7 +123,7 @@ Category [id=2, name=category2]
 	Product [id=5, name=product y, price=88.88]
 	Product [id=6, name=product z, price=88.88]
 ```
-
+***
 <a name="many_to_one"/>
 
 ### 04. Many To One 
@@ -149,7 +149,7 @@ Product [id=4, name=product x, price=88.88]	==>	Category [id=2, name=category2]
 Product [id=5, name=product y, price=88.88]	==>	Category [id=2, name=category2]
 Product [id=6, name=product z, price=88.88]	==>	Category [id=2, name=category2]
 ```
-
+***
 <a name="many_to_many"/>
 
 ### 05. Many To Many 
@@ -201,7 +201,7 @@ Order002
 	product c	88.879997	100
 	product x	88.879997	100
 ```
-
+***
 <a name="dynamic-SQL"/>
 
 ### 06. Dynamic SQL 
@@ -397,8 +397,10 @@ An easy way to concat.
 </select>
 ```
 [Example Package Directory](./src/dynamic_SQL/bind_tag)
+***
+<a name="annotation"/>
 
-### 07. Annotation <a name="annotation"/>
+### 07. Annotation 
 [Example Package Directory](./src/annotation)
 
 - [Basic CRUD](./src/annotation/CRUD)
@@ -407,17 +409,24 @@ An easy way to concat.
 - [many_to_many](./src/annotation/many_to_many)
 - [dynamic_SQL](./src/annotation/dynamic_SQL)
 
-### 08. log4j <a name="log4j"/>
+***
+<a name="log4j"/>
+
+### 08. log4j 
 [Example Package Directory](./src/log)
 
 __Required JAR:__ [log4j-api-2.9.1.jar](./lib/log4j-api-2.9.1.jar) and [log4j-core-2.9.1.jar](./lib/log4j-core-2.9.1.jar)
+***
+<a name="transaction-support"/>
 
-
-### 09. Transaction Support <a name="transaction-support"/>
+### 09. Transaction Support 
 Only INNODB support for Transaction.
 `alter table category_ ENGINE  = innodb;`
 
-### 10. Lazy Loading <a name="lazy-loading"/>
+***
+<a name="lazy-loading"/>
+
+### 10. Lazy Loading 
 Do not do sub-query unless it is needed.
 ```
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -435,12 +444,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 ```
 
+***
 <a name="page-split"/>
 
 ### 11. Page Split 
-##### Way 1: PageHelper
+__Way 1: PageHelper__
 
-__Mybatis-config.xml__
+Mybatis-config.xml
 ```
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
@@ -464,9 +474,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 main method: `PageHelper.offsetPage(0, 5);` means showing 5 records from 0
 
-##### Way 2: `limit` in SQL
+__Way 2: `limit` in SQL__
 
-__POJO XML File__
+POJO XML File
 ```
         <select id="listCategory" resultType="Category">
             select * from   category_ 
@@ -476,6 +486,7 @@ __POJO XML File__
         </select>   
 ```
 
+***
 <a name="cache"/>
 
 ### 12. Cache 
@@ -493,6 +504,7 @@ __POJO XML File__
 ```
 ##### Step 3: POJO Class `implements Serializable`
 
+***
 <a name="c3p0"/>
 
 ### 13. c3p0 
@@ -500,6 +512,7 @@ __POJO XML File__
 ##### Step 2: Create [C3P0DataSourceFactory Class](./src/c3p0/C3P0DataSourceFactory.java)
 ##### Step 3: Edit [mybatis-config.xml](./src/c3p0/mybatis-config.xml)
 
+***
 <a name="mybatis-generator"/>
 
 ### 14. Mybatis Generator 
