@@ -2,14 +2,37 @@
 This project is a practice of Mybatis. Examples cover common usage of Mybatis framework. 
 ***
 
+### Index
+1. [Hello World](#hello-world)
+2. [Basic CRUD](#basic-CRUD)
+3. [One To Many](#one_to_many)
+4. [Many To One](#many_to_one)
+5. [Many To Many](#many_to_many)
+6. [Dynamic SQL](#dynamic-SQL)
+7. [Annotation](#annotation)
+8. [log4j](#log4j)
+9. [Transaction Support](#transaction-support)
+10. [Lazy Loading](#lazy-loading)
+11. [Page Split](#page-split)
+12. [Cache](#cache)
+13. [c3p0](#c3p0)
+14. [Mybatis Generator](mybatis-generator)
+***
+
 #### Preparation
-Install MySQL, and set username=root and password=admin. 
+Install MySQL, and set username=root and password=admin. <br>
+You can install whatever database you want and set any username, but do not forget to change the code in the Configuration XML files.
 
-*You can install whatever database you want and set any username, do not forget to change the code in the Configuration XML files.*
+__Required jar:__
+- [Mybatis](./lib/mybatis-3.4.5.jar)
+- [JDBC (MySQL)](./lib/mysql-connector-java-5.1.42-bin.jar)
+- [log4j-api-2.9.1.jar](./lib/log4j-api-2.9.1.jar) 
+- [log4j-core-2.9.1.jar](./lib/log4j-core-2.9.1.jar)
+- [c3p0-0.9.5.2.jar](./lib/c3p0-0.9.5.2.jar) 
+- [mchange-commons-java-0.2.11.jar](./lib/mchange-commons-java-0.2.11.jar)
+- [mybatis-generator-core-1.3.5.jar](./lib/mybatis-generator-core-1.3.5.jar)
 
-__Required jar:__[Mybatis](./lib/mybatis-3.4.5.jar) and [JDBC (MySQL)](./lib/mysql-connector-java-5.1.42-bin.jar)
-
-### 01. Hello World
+### 01. Hello World <a name="hello-world"/>
 [Example Package Directory](./src/hello_world)
 - [SQL](./src/hello_world/.sql)
 - [POJO Java Class](./src/hello_world/Category.java)
@@ -19,8 +42,8 @@ __Required jar:__[Mybatis](./lib/mybatis-3.4.5.jar) and [JDBC (MySQL)](./lib/mys
 
 __Result:__ Print all the names of Category.
 
-### 02. Basic CRUD
-[Example Package Directory](./src/basic_CRUD)
+### 02. Basic CRUD  <a name="basic-CRUD"/>
+[Example Package Directory](./src/basic_CRUD) [(Annotation Way Here)](./src/annotation/CRUD)
 - [POJO Java Class](./src/basic_CRUD/Category.java)
 - [POJO XML](./src/basic_CRUD/Category.xml)
 - [Configuration XML](./src/basic_CRUD/basicCRUD-config.xml)
@@ -71,10 +94,10 @@ There is a better way using [`<bind>`](#bind).
 </select>
 ```
 
-### 03. One To Many
+### 03. One To Many <a name="one_to_many"/>
 __One__ Category object has __many__ Product objects.
 
-[Example Package Directory](./src/one_to_many)
+[Example Package Directory](./src/one_to_many) [(Annotation Way Here)](./src/annotation/one_to_many)
 - [SQL](./src/one_to_many/.sql)
 - POJO Java Class:
     1. [Category](./src/one_to_many/Category.java)
@@ -95,10 +118,10 @@ Category [id=2, name=category2]
 	Product [id=6, name=product z, price=88.88]
 ```
 
-### 04. Many To One
+### 04. Many To One <a name="many_to_one"/>
 __Many__  Product objects belongs to __one__ Category.
 
-[Example Package Directory](./src/many_to_one)
+[Example Package Directory](./src/many_to_one) [(Annotation Way Here)](./src/annotation/many_to_one)
 - [SQL](./src/many_to_one/.sql)
 - POJO Java Class:
     1. [Category](./src/many_to_one/Category.java)
@@ -119,11 +142,11 @@ Product [id=5, name=product y, price=88.88]	==>	Category [id=2, name=category2]
 Product [id=6, name=product z, price=88.88]	==>	Category [id=2, name=category2]
 ```
 
-### 05. Many To Many
+### 05. Many To Many <a name="many_to_many"/>
 __One__ Order has __many__ Product objects.<br/>
 __One__ Product is in __many__ Order objects.
 
-[Example Package Directory](./src/many_to_many)
+[Example Package Directory](./src/many_to_many) [(Annotation Way Here)](./src/annotation/many_to_many)
 - [SQL](./src/many_to_many/.sql)
 - POJO Java Class:
     1. [Category](./src/many_to_many/Category.java)
@@ -168,7 +191,8 @@ Order002
 	product c	88.879997	100
 	product x	88.879997	100
 ```
-### 06. Dynamic SQL
+### 06. Dynamic SQL <a name="dynamic-SQL"/>
+[(Annotation Way Here)](./src/annotation/dynamic_SQL)
 ##### (1) if
 Use one SQL for statements with a optional parameter.
 ```
@@ -358,3 +382,105 @@ An easy way to concat.
 </select>
 ```
 [Example Package Directory](./src/dynamic_SQL/bind_tag)
+
+### 07. Annotation <a name="annotation"/>
+[Example Package Directory](./src/annotation)
+
+- [Basic CRUD](./src/annotation/CRUD)
+- [one_to_many](./src/annotation/one_to_many)
+- [many_to_one](./src/annotation/many_to_one)
+- [many_to_many](./src/annotation/many_to_many)
+- [dynamic_SQL](./src/annotation/dynamic_SQL)
+
+### 08. log4j <a name="log4j"/>
+[Example Package Directory](./src/log)
+
+__Required JAR:__ [log4j-api-2.9.1.jar](./lib/log4j-api-2.9.1.jar) and [log4j-core-2.9.1.jar](./lib/log4j-core-2.9.1.jar)
+
+
+### 09. Transaction Support <a name="transaction-support"/>
+Only INNODB support for Transaction.
+`alter table category_ ENGINE  = innodb;`
+
+### 10. Lazy Loading <a name="lazy-loading"/>
+Do not do sub-query unless it is needed.
+```
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>  
+         <setting name="lazyLoadingEnabled" value="true" />  
+         <setting name="aggressiveLazyLoading" value="false"/>  
+    </settings>  
+    
+ ......
+
+```
+
+### 11. Page Split <a name="page-split"/>
+##### Way 1: PageHelper
+
+__Mybatis-config.xml__
+```
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>  
+            <setting name="lazyLoadingEnabled" value="true" />  
+            <setting name="aggressiveLazyLoading" value="false"/>  
+        </settings>    
+    <typeAliases>
+      <package name=" "/>
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+             
+        </plugin>
+    </plugins>
+    ......
+```
+
+main method: `PageHelper.offsetPage(0, 5);` means showing 5 records from 0
+
+##### Way 2: `limit` in SQL
+
+__POJO XML File__
+```
+        <select id="listCategory" resultType="Category">
+            select * from   category_ 
+                <if test="start!=null and count!=null">
+                    limit #{start},#{count}
+                </if>
+        </select>   
+```
+
+### 12. Cache <a name="cache"/>
+##### Step 1: Add `<setting name="cacheEnabled" value="true"/>` in mybatis-config.xml
+##### Step 2: Add `<cache/>` in POJO XML File
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.how2java.pojo">
+        <cache/>
+        ......
+```
+##### Step 3: POJO Class `implements Serializable`
+
+### 13. c3p0 <a name="c3p0"/>
+##### Step 1: Add [c3p0-0.9.5.2.jar](./lib/c3p0-0.9.5.2.jar) and [mchange-commons-java-0.2.11.jar](./lib/mchange-commons-java-0.2.11.jar)
+##### Step 2: Create [C3P0DataSourceFactory Class](./src/c3p0/C3P0DataSourceFactory.java)
+##### Step 3: Edit [mybatis-config.xml](./src/c3p0/mybatis-config.xml)
+
+### 14. Mybatis Generator <a name="mybatis-generator"/>
+Generate POJO and XML from tables in the database.
+##### Step 1: Add [mybatis-generator-core-1.3.5.jar](./lib/mybatis-generator-core-1.3.5.jar)
+##### Step 2: Create [generator-config.xml](./src/mybatis_generator/generator-config.xml)
+##### Step 3: Create [Mybatis Generator main method](./src/mybatis_generator/GeneratorMain.java) and run. The pojo class, mapper class and pojo xml files will be generated.
