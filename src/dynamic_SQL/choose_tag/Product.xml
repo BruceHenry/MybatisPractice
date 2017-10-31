@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dynamic_SQL.choose_tag">
+    <select id="listProduct" resultType="Product">
+        SELECT * FROM product_
+        <where>
+            <choose>
+                <when test="name != null">
+                    and name like concat('%',#{name},'%')
+                </when>
+                <when test="price !=null and price != 0">
+                    and price > #{price}
+                </when>
+                <otherwise>
+                    and id >1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+</mapper>
